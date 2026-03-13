@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nehan Sharif Haroon Rashedu | Pre-Med</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #05080f;
+      --bg2: #080d1a;
+      --navy: #0b1630;
+      --teal: #0f9b8e;
+      --teal-light: #1ecfc0;
+      --gold: #c9a84c;
+      --gold-light: #e8c97b;
+      --text: #e8eaf0;
+      --text-muted: #8892a4;
+      --glass: rgba(15, 155, 142, 0.07);
+      --border: rgba(15, 155, 142, 0.18);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* ─── CUSTOM CURSOR ─────────────────────────────── */
+    .cursor {
+      position: fixed;
+      width: 10px; height: 10px;
+      background: var(--teal-light);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.1s ease;
+      mix-blend-mode: screen;
+    }
+    .cursor-ring {
+      position: fixed;
+      width: 36px; height: 36px;
+      border: 1px solid var(--teal);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transition: all 0.25s ease;
+    }
+
+    /* ─── NOISE OVERLAY ─────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9997;
+      opacity: 0.4;
+    }
+
+    /* ─── NAVIGATION ─────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 4rem;
+      background: rgba(5, 8, 15, 0.6);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--teal-light);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--teal-light); }
+
+    /* ─── HERO ───────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      position: relative;
+      padding: 6rem 2rem 4rem;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 0%, rgba(15,155,142,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 80% 80%, rgba(201,168,76,0.06) 0%, transparent 60%);
+    }
+
+    /* Animated grid lines */
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(15,155,142,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15,155,142,0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridDrift 20s linear infinite;
+    }
+    @keyframes gridDrift {
+      from { transform: translateY(0); }
+      to { transform: translateY(60px); }
+    }
+
+    /* Floating orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      animation: orbFloat 8s ease-in-out infinite;
+    }
+    .orb-1 {
+      width: 400px; height: 400px;
+      background: rgba(15,155,142,0.08);
+      top: -100px; left: -100px;
+      animation-delay: 0s;
+    }
+    .orb-2 {
+      width: 300px; height: 300px;
+      background: rgba(201,168,76,0.06);
+      bottom: -50px; right: -50px;
+      animation-delay: -4s;
+    }
+    .orb-3 {
+      width: 200px; height: 200px;
+      background: rgba(15,155,142,0.05);
+      top: 50%; right: 20%;
+      animation-delay: -2s;
+    }
+    @keyframes orbFloat {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-30px) scale(1.05); }
+    }
+
+    /* Heartbeat line */
+    .heartbeat {
+      position: absolute;
+      bottom: 15%;
+      left: 0; right: 0;
+      height: 60px;
+      overflow: hidden;
+      opacity: 0.3;
+    }
+    .heartbeat svg { width: 100%; height: 100%; }
+    .heartbeat path {
+      stroke: var(--teal-light);
+      stroke-width: 1.5;
+      fill: none;
+      stroke-dasharray: 2000;
+      stroke-dashoffset: 2000;
+      animation: drawLine 3s ease forwards 1s, pulseOpacity 3s ease-in-out 4s infinite;
+    }
+    @keyframes drawLine {
+      to { stroke-dashoffset: 0; }
+    }
+    @keyframes pulseOpacity {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 900px;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--teal-light);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.3s;
+    }
+    .hero-tag::before, .hero-tag::after {
+      content: '';
+      display: block;
+      width: 30px;
+      height: 1px;
+      background: var(--teal);
+    }
+
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 1s ease forwards 0.5s;
+    }
+    .hero-name em {
+      font-style: italic;
+      color: var(--teal-light);
+    }
+
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--gold-light);
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 1s ease forwards 0.7s;
+    }
+
+    .hero-description {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto 3rem;
+      line-height: 1.8;
+      opacity: 0;
+      animation: fadeUp 1s ease forwards 0.9s;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 1s ease forwards 1.1s;
+    }
+
+    .btn-primary {
+      padding: 0.9rem 2.2rem;
+      background: linear-gradient(135deg, var(--teal), var(--teal-light));
+      color: var(--bg);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      transition: all 0.3s ease;
+      cursor: none;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--teal-light), var(--gold));
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      padding: 0.9rem 2.2rem;
+      background: transparent;
+      color: var(--teal-light);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--teal);
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      transition: all 0.3s ease;
+      cursor: none;
+    }
+    .btn-outline:hover {
+      background: var(--glass);
+      border-color: var(--teal-light);
+      transform: translateY(-2px);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── SCROLL INDICATOR ──────────────────────────── */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0;
+      animation: fadeUp 1s ease forwards 1.5s;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, var(--teal), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    .scroll-text {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--text-muted);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 1; transform: scaleY(1); }
+      50% { opacity: 0.4; transform: scaleY(0.7); }
+    }
+
+    /* ─── SECTION BASE ──────────────────────────────── */
+    section {
+      padding: 8rem 2rem;
+      position: relative;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--teal-light);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      max-width: 60px;
+      height: 1px;
+      background: var(--teal);
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .section-title em {
+      font-style: italic;
+      color: var(--teal-light);
+    }
+
+    /* ─── ABOUT ─────────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      margin-top: 4rem;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+    .about-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: linear-gradient(90deg, var(--teal), var(--gold));
+    }
+    .about-card::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; right: -40px;
+      width: 120px; height: 120px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+    }
+
+    .vitals {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .vital {
+      padding: 1.2rem;
+      border: 1px solid var(--border);
+      background: rgba(15,155,142,0.04);
+      transition: all 0.3s ease;
+    }
+    .vital:hover {
+      border-color: var(--teal);
+      background: var(--glass);
+      transform: translateY(-2px);
+    }
+    .vital-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--teal-light);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .vital-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--text);
+    }
+
+    .about-text p {
+      color: var(--text-muted);
+      line-height: 1.9;
+      margin-bottom: 1.2rem;
+      font-size: 0.95rem;
+    }
+    .about-text p strong {
+      color: var(--text);
+      font-weight: 400;
+    }
+    .about-text p .highlight {
+      color: var(--teal-light);
+      font-style: italic;
+    }
+
+    /* ─── EXPERIENCE ─────────────────────────────────── */
+    #experience {
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 50%, var(--bg) 100%);
+    }
+
+    .timeline {
+      position: relative;
+      margin-top: 4rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--teal) 20%, var(--teal) 80%, transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 3rem;
+      padding-bottom: 4rem;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: all 0.6s ease;
+    }
+    .timeline-item.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+
+    .timeline-dot {
+      position: absolute;
+      left: -5px;
+      top: 6px;
+      width: 10px; height: 10px;
+      background: var(--teal-light);
+      border-radius: 50%;
+      box-shadow: 0 0 20px var(--teal);
+      animation: dotPulse 3s ease-in-out infinite;
+    }
+    @keyframes dotPulse {
+      0%, 100% { box-shadow: 0 0 10px var(--teal); }
+      50% { box-shadow: 0 0 25px var(--teal-light), 0 0 40px rgba(15,155,142,0.3); }
+    }
+
+    .timeline-date {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--teal-light);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .timeline-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 300;
+      margin-bottom: 0.2rem;
+    }
+    .timeline-org {
+      font-size: 0.85rem;
+      color: var(--gold-light);
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+    .timeline-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      max-width: 600px;
+    }
+
+    .timeline-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    .tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--teal);
+      border: 1px solid rgba(15,155,142,0.3);
+      padding: 0.25rem 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ─── INNOVATION PROJECT ─────────────────────────── */
+    .innovation-card {
+      margin-top: 4rem;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .innovation-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--teal), var(--gold), var(--teal));
+      animation: shimmer 3s linear infinite;
+    }
+    @keyframes shimmer {
+      from { background-position: -200% 0; }
+      to { background-position: 200% 0; }
+    }
+
+    .innovation-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 8rem;
+      font-weight: 300;
+      color: rgba(15,155,142,0.08);
+      line-height: 1;
+      position: absolute;
+      right: -10px;
+      bottom: -20px;
+      pointer-events: none;
+    }
+
+    .innovation-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--gold-light);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .innovation-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .innovation-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    .innovation-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .stat-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .stat-icon {
+      width: 40px; height: 40px;
+      border: 1px solid var(--border);
+      display: grid;
+      place-items: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      background: rgba(15,155,142,0.05);
+    }
+    .stat-text {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .stat-text strong {
+      display: block;
+      color: var(--text);
+      font-size: 1rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      margin-bottom: 0.1rem;
+    }
+
+    /* ─── GOALS ─────────────────────────────────────── */
+    #goals {
+      background: linear-gradient(135deg, rgba(11,22,48,0.4), var(--bg));
+    }
+
+    .goals-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 4rem;
+    }
+
+    .goal-card {
+      padding: 2rem;
+      border: 1px solid var(--border);
+      background: var(--glass);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .goal-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .goal-card:hover {
+      border-color: var(--teal);
+      background: rgba(15,155,142,0.1);
+    }
+    .goal-card:hover .goal-number {
+      color: rgba(15,155,142,0.2);
+    }
+
+    .goal-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.04);
+      line-height: 1;
+      margin-bottom: -1rem;
+      transition: color 0.4s ease;
+    }
+    .goal-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 300;
+      margin-bottom: 0.8rem;
+    }
+    .goal-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .goal-bar {
+      margin-top: 1.5rem;
+      height: 2px;
+      background: rgba(15,155,142,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    .goal-bar-fill {
+      position: absolute;
+      top: 0; left: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--teal), var(--teal-light));
+      transition: width 1.5s ease 0.5s;
+      width: 0;
+    }
+    .goal-card.visible .goal-bar-fill {
+      width: var(--pct);
+    }
+
+    /* ─── SKILLS ─────────────────────────────────────── */
+    .skills-section {
+      margin-top: 4rem;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .skill-item {
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+      transition: all 0.3s ease;
+    }
+    .skill-item:hover {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.05);
+    }
+    .skill-name {
+      font-size: 0.9rem;
+      color: var(--text);
+      margin-bottom: 0.7rem;
+      display: flex;
+      justify-content: space-between;
+    }
+    .skill-name span {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--gold-light);
+    }
+    .skill-track {
+      height: 2px;
+      background: rgba(255,255,255,0.06);
+      position: relative;
+      overflow: hidden;
+    }
+    .skill-fill {
+      position: absolute;
+      top: 0; left: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      width: 0;
+      transition: width 1.2s ease;
+    }
+    .skill-item.visible .skill-fill {
+      width: var(--pct);
+    }
+
+    /* ─── PHILOSOPHY ─────────────────────────────────── */
+    .philosophy-section {
+      position: relative;
+      padding: 8rem 2rem;
+      overflow: hidden;
+    }
+    .philosophy-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 70% at 50% 50%, rgba(15,155,142,0.06) 0%, transparent 70%);
+    }
+    .philosophy-quote {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .quote-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 8rem;
+      color: rgba(15,155,142,0.15);
+      line-height: 0.5;
+      margin-bottom: 2rem;
+    }
+    .quote-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.5;
+      color: var(--text);
+      margin-bottom: 2rem;
+    }
+    .quote-text em {
+      color: var(--teal-light);
+    }
+    .quote-source {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--gold-light);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    /* ─── CONTACT ─────────────────────────────────────── */
+    .contact-section {
+      padding: 8rem 2rem;
+      background: var(--bg2);
+      text-align: center;
+    }
+    .contact-inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .contact-links {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+    }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1rem 1.8rem;
+      border: 1px solid var(--border);
+      background: var(--glass);
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      transition: all 0.3s ease;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      cursor: none;
+    }
+    .contact-link:hover {
+      border-color: var(--teal);
+      color: var(--teal-light);
+      background: rgba(15,155,142,0.1);
+      transform: translateY(-3px);
+    }
+    .contact-link svg {
+      width: 16px; height: 16px;
+      stroke: currentColor;
+      fill: none;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────── */
+    footer {
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    footer p {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--text-muted);
+      letter-spacing: 0.15em;
+    }
+
+    /* ─── MOBILE ─────────────────────────────────────── */
+    @media (max-width: 768px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .goals-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .innovation-card { grid-template-columns: 1fr; gap: 2rem; }
+      .innovation-number { display: none; }
+      .cursor, .cursor-ring { display: none; }
+      body { cursor: auto; }
+      .btn-primary, .btn-outline, .contact-link { cursor: pointer; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-logo">NSH Rashedu</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#goals">Goals</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="heartbeat">
+      <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,30 L100,30 L120,10 L140,50 L160,5 L180,55 L200,30 L300,30 L320,30 L340,10 L360,50 L380,5 L400,55 L420,30 L600,30 L620,10 L640,50 L660,5 L680,55 L700,30 L900,30 L920,10 L940,50 L960,5 L980,55 L1000,30 L1200,30"/>
+      </svg>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-tag">Pre-Medical Student</div>
+      <h1 class="hero-name">
+        Nehan<br /><em>Sharif Haroon</em><br />Rashedu
+      </h1>
+      <p class="hero-subtitle">Future Physician · Community Advocate · Innovator</p>
+      <p class="hero-description">
+        Biology pre-med student at Wake Technical Community College, pursuing transfer to UNC Chapel Hill.
+        Bridging the gap between healthcare access and community education.
+      </p>
+      <div class="hero-cta">
+        <a href="#experience" class="btn-primary">View My Journey</a>
+        <a href="#contact" class="btn-outline">Connect</a>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <span class="scroll-text">Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <div class="section-label">01 — About Me</div>
+      <h2 class="section-title">Driven by <em>purpose,</em><br />guided by collaboration</h2>
+
+      <div class="about-grid">
+        <div class="about-visual">
+          <div class="about-card">
+            <p style="font-family:'Cormorant Garamond',serif; font-size:1.05rem; line-height:1.8; color:var(--text-muted); font-style:italic;">
+              "My goal is to transfer to UNC Chapel Hill for biology and eventually become a physician — serving communities who need it most."
+            </p>
+            <div class="vitals">
+              <div class="vital">
+                <div class="vital-label">Current</div>
+                <div class="vital-value">Wake Tech CC</div>
+              </div>
+              <div class="vital">
+                <div class="vital-label">Goal</div>
+                <div class="vital-value">UNC Chapel Hill</div>
+              </div>
+              <div class="vital">
+                <div class="vital-label">Field</div>
+                <div class="vital-value">Biology / Pre-Med</div>
+              </div>
+              <div class="vital">
+                <div class="vital-label">Aspiration</div>
+                <div class="vital-value">Physician</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-text">
+          <p>
+            I am <strong>Nehan Sharif Haroon Rashedu</strong> — a pre-medical student with a deep commitment to
+            healthcare equity and community service. My journey began at Wake Technical Community College,
+            where I've been building the foundation for a career in medicine.
+          </p>
+          <p>
+            I approach every challenge with a <span class="highlight">collaborative mindset</span> — believing
+            that the best outcomes come from listening, brainstorming, and uniting different perspectives
+            into a single, stronger vision. This philosophy guides everything from patient care
+            to team leadership.
+          </p>
+          <p>
+            From volunteering in hospital wards to interning at an international organization,
+            I've deliberately sought experiences that stretch my capabilities and deepen my
+            understanding of what it means to truly serve.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-label">02 — Experience</div>
+      <h2 class="section-title">Building toward<br /><em>medicine</em></h2>
+
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Clinical Volunteer</div>
+          <h3 class="timeline-title">WakeMed Health System</h3>
+          <p class="timeline-org">Raleigh, North Carolina</p>
+          <p class="timeline-desc">
+            Gained firsthand clinical exposure in a high-paced hospital environment. Observed healthcare
+            professionals navigating complex decisions under pressure — witnessing the intersection of
+            compassion, precision, and leadership that defines great medicine.
+          </p>
+          <div class="timeline-tags">
+            <span class="tag">Clinical Exposure</span>
+            <span class="tag">Patient Observation</span>
+            <span class="tag">Healthcare Systems</span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Intern</div>
+          <h3 class="timeline-title">GAOEX</h3>
+          <p class="timeline-org">Direct Report to CEO</p>
+          <p class="timeline-desc">
+            Worked directly under executive leadership, managing diverse responsibilities across education,
+            social media strategy, and finance. Demonstrated the ability to handle high-stakes deadlines
+            through proactive communication and collaborative problem-solving — skills essential
+            to any medical professional.
+          </p>
+          <div class="timeline-tags">
+            <span class="tag">Education</span>
+            <span class="tag">Social Media</span>
+            <span class="tag">Finance</span>
+            <span class="tag">Executive Relations</span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Competitor & Leader</div>
+          <h3 class="timeline-title">FBLA — Future Business Leaders of America</h3>
+          <p class="timeline-org">Wake Technical Community College</p>
+          <p class="timeline-desc">
+            Active member and competitor in FBLA, developing leadership, communication, and
+            strategic thinking skills. Competed in challenges that sharpened analytical and
+            presentation abilities — directly transferable to the demands of medical education.
+          </p>
+          <div class="timeline-tags">
+            <span class="tag">Leadership</span>
+            <span class="tag">Competition</span>
+            <span class="tag">Strategy</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Innovation Project -->
+      <div class="innovation-card">
+        <div>
+          <div class="innovation-tag">🏆 Wake Tech Eagle Innovation Challenge</div>
+          <h3 class="innovation-title">Pre-Med Resource Disparity at Community Colleges</h3>
+          <p class="innovation-desc">
+            Identified a critical gap: pre-medical students at community colleges often lack the
+            same resources, advising networks, and research opportunities as their four-year
+            university counterparts. Developing a comprehensive proposal to address this disparity
+            and level the playing field for aspiring physicians everywhere.
+          </p>
+          <div class="timeline-tags" style="margin-top:1.5rem;">
+            <span class="tag">Healthcare Equity</span>
+            <span class="tag">Innovation</span>
+            <span class="tag">Community</span>
+          </div>
+        </div>
+        <div class="innovation-stats">
+          <div class="stat-row">
+            <div class="stat-icon">🔬</div>
+            <div class="stat-text">
+              <strong>Research & Advocacy</strong>
+              Identifying systemic gaps in pre-med education pathways
+            </div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-icon">🤝</div>
+            <div class="stat-text">
+              <strong>Mentorship-Driven</strong>
+              Collaborating with a mentor to refine proposals and strategy
+            </div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-icon">🏥</div>
+            <div class="stat-text">
+              <strong>Healthcare Focus</strong>
+              Bridging the resource gap for future community college physicians
+            </div>
+          </div>
+        </div>
+        <div class="innovation-number">01</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Goals -->
+  <section id="goals">
+    <div class="container">
+      <div class="section-label">03 — Vision</div>
+      <h2 class="section-title">The path to<br /><em>becoming a physician</em></h2>
+
+      <div class="goals-grid">
+        <div class="goal-card" style="transition-delay:0s;">
+          <div class="goal-number">01</div>
+          <h3 class="goal-title">Transfer to UNC Chapel Hill</h3>
+          <p class="goal-desc">Pursuing biology studies at one of the nation's top research universities, building the academic foundation required for medical school admission.</p>
+          <div class="goal-bar"><div class="goal-bar-fill" style="--pct: 70%"></div></div>
+        </div>
+        <div class="goal-card" style="transition-delay:0.15s;">
+          <div class="goal-number">02</div>
+          <h3 class="goal-title">Medical School Admission</h3>
+          <p class="goal-desc">Completing MCAT preparation, clinical hours, and research experience to become a competitive medical school applicant.</p>
+          <div class="goal-bar"><div class="goal-bar-fill" style="--pct: 45%"></div></div>
+        </div>
+        <div class="goal-card" style="transition-delay:0.3s;">
+          <div class="goal-number">03</div>
+          <h3 class="goal-title">Become a Physician</h3>
+          <p class="goal-desc">Serving underserved communities as a licensed physician — combining clinical expertise with the collaborative, empathetic leadership that defines my character.</p>
+          <div class="goal-bar"><div class="goal-bar-fill" style="--pct: 20%"></div></div>
+        </div>
+      </div>
+
+      <!-- Skills -->
+      <div class="skills-section">
+        <div class="section-label" style="margin-top:5rem;">Core Competencies</div>
+        <div class="skills-grid">
+          <div class="skill-item">
+            <div class="skill-name">Collaborative Leadership <span>Expert</span></div>
+            <div class="skill-track"><div class="skill-fill" style="--pct:92%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">Clinical Observation <span>Advanced</span></div>
+            <div class="skill-track"><div class="skill-fill" style="--pct:78%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">Communication & Advocacy <span>Expert</span></div>
+            <div class="skill-track"><div class="skill-fill" style="--pct:90%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">Research & Analysis <span>Intermediate</span></div>
+            <div class="skill-track"><div class="skill-fill" style="--pct:70%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">Healthcare Systems Knowledge <span>Advanced</span></div>
+            <div class="skill-track"><div class="skill-fill" style="--pct:75%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">Strategic Problem-Solving <span>Expert</span></div>
+            <div class="skill-track"><div class="skill-fill" style="--pct:88%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy -->
+  <section class="philosophy-section">
+    <div class="philosophy-bg"></div>
+    <div class="philosophy-quote">
+      <div class="quote-mark">"</div>
+      <p class="quote-text">
+        Medicine is not just about diagnosis and treatment —
+        it is about <em>listening deeply, collaborating meaningfully,</em>
+        and meeting every patient where they are.
+      </p>
+      <div class="quote-source">— Nehan's Medical Philosophy</div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact-section" id="contact">
+    <div class="contact-inner">
+      <div class="section-label" style="justify-content:center;">04 — Contact</div>
+      <h2 class="section-title">Let's <em>connect</em></h2>
+      <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.8; margin-top:1rem;">
+        Whether you're a fellow pre-med student, a healthcare professional, or someone passionate
+        about healthcare equity — I'd love to connect and collaborate.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:your@email.com" class="contact-link">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          Email Me
+        </a>
+        <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/yourprofile" class="contact-link" target="_blank">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Nehan Sharif Haroon Rashedu · Pre-Medical Student · Wake Technical Community College</p>
+  </footer>
+
+  <script>
+    /* ══════════════════════════════════════════
+       CURSOR
+    ══════════════════════════════════════════ */
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx - 5 + 'px';
+      cursor.style.top  = my - 5 + 'px';
+    });
+    (function animateRing() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx - 18 + 'px';
+      ring.style.top  = ry - 18 + 'px';
+      requestAnimationFrame(animateRing);
+    })();
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => { cursor.style.transform='scale(2)'; ring.style.transform='scale(1.5)'; ring.style.borderColor='var(--gold)'; });
+      el.addEventListener('mouseleave', () => { cursor.style.transform='scale(1)'; ring.style.transform='scale(1)'; ring.style.borderColor='var(--teal)'; });
+    });
+
+    /* ══════════════════════════════════════════
+       SPLIT-TEXT UTILITY
+       Wraps every word in a <span class="word">
+       and every word's inner text in a <span class="word-inner">
+       so we can clip-reveal word-by-word.
+    ══════════════════════════════════════════ */
+    function splitWords(el) {
+      const html = el.innerHTML;
+      // preserve <em> and <br> tags, split only text nodes
+      const temp = document.createElement('div');
+      temp.innerHTML = html;
+
+      function processNode(node) {
+        if (node.nodeType === Node.TEXT_NODE) {
+          const words = node.textContent.split(/(\s+)/);
+          const frag = document.createDocumentFragment();
+          words.forEach(w => {
+            if (/^\s+$/.test(w)) {
+              frag.appendChild(document.createTextNode(w));
+            } else if (w) {
+              const outer = document.createElement('span');
+              outer.className = 'word';
+              outer.style.display = 'inline-block';
+              outer.style.overflow = 'hidden';
+              outer.style.verticalAlign = 'bottom';
+              const inner = document.createElement('span');
+              inner.className = 'word-inner';
+              inner.style.display = 'inline-block';
+              inner.textContent = w;
+              outer.appendChild(inner);
+              frag.appendChild(outer);
+            }
+          });
+          node.parentNode.replaceChild(frag, node);
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+          Array.from(node.childNodes).forEach(processNode);
+        }
+      }
+      Array.from(temp.childNodes).forEach(processNode);
+      el.innerHTML = '';
+      el.appendChild(temp);
+    }
+
+    /* ══════════════════════════════════════════
+       APPLY SPLIT to headlines & labels
+    ══════════════════════════════════════════ */
+    document.querySelectorAll('.section-title, .timeline-title, .goal-title, .innovation-title, .quote-text').forEach(el => {
+      splitWords(el);
+      el.classList.add('split-ready');
+    });
+    document.querySelectorAll('.section-label').forEach(el => {
+      el.classList.add('label-reveal');
+    });
+
+    /* ══════════════════════════════════════════
+       CSS for word animations (injected)
+    ══════════════════════════════════════════ */
+    const style = document.createElement('style');
+    style.textContent = `
+      /* Word mask reveal */
+      .split-ready .word-inner {
+        transform: translateY(110%);
+        opacity: 0;
+        transition: transform 0.7s cubic-bezier(0.16,1,0.3,1), opacity 0.5s ease;
+      }
+      .split-ready.in-view .word-inner {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      /* Section label slide-in */
+      .label-reveal {
+        opacity: 0;
+        transform: translateX(-16px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      .label-reveal.in-view { opacity: 1; transform: translateX(0); }
+
+      /* Paragraph reveal */
+      .para-reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.75s ease, transform 0.75s ease;
+      }
+      .para-reveal.in-view { opacity: 1; transform: translateY(0); }
+
+      /* Card slide-up */
+      .card-reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16,1,0.3,1);
+      }
+      .card-reveal.in-view { opacity: 1; transform: translateY(0); }
+
+      /* Left-slide for vitals / stat-rows */
+      .left-reveal {
+        opacity: 0;
+        transform: translateX(-30px);
+        transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16,1,0.3,1);
+      }
+      .left-reveal.in-view { opacity: 1; transform: translateX(0); }
+
+      /* Right-slide */
+      .right-reveal {
+        opacity: 0;
+        transform: translateX(30px);
+        transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16,1,0.3,1);
+      }
+      .right-reveal.in-view { opacity: 1; transform: translateX(0); }
+
+      /* Fade-scale for quote mark */
+      .scale-reveal {
+        opacity: 0;
+        transform: scale(0.7);
+        transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.34,1.56,0.64,1);
+      }
+      .scale-reveal.in-view { opacity: 1; transform: scale(1); }
+
+      /* Underline draw */
+      .underline-reveal {
+        position: relative;
+      }
+      .underline-reveal::after {
+        content: '';
+        position: absolute;
+        bottom: -4px; left: 0;
+        height: 1px;
+        width: 0;
+        background: var(--teal);
+        transition: width 0.8s cubic-bezier(0.16,1,0.3,1);
+      }
+      .underline-reveal.in-view::after { width: 100%; }
+
+      /* Tag pop-in */
+      .tag-reveal {
+        opacity: 0;
+        transform: scale(0.85) translateY(8px);
+        transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.34,1.56,0.64,1);
+      }
+      .tag-reveal.in-view { opacity: 1; transform: scale(1) translateY(0); }
+
+      /* Existing classes keep their own transitions */
+      .timeline-item { opacity: 0; transform: translateX(-20px); transition: all 0.6s ease; }
+      .timeline-item.visible { opacity: 1; transform: translateX(0); }
+      .goal-card { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16,1,0.3,1), border-color 0.4s, background 0.4s; }
+      .goal-card.visible { opacity: 1; transform: translateY(0); }
+      .skill-item { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.3s, background 0.3s; }
+      .skill-item.visible { opacity: 1; transform: translateY(0); }
+    `;
+    document.head.appendChild(style);
+
+    /* ══════════════════════════════════════════
+       ASSIGN REVEAL CLASSES to page elements
+    ══════════════════════════════════════════ */
+    // Paragraphs
+    document.querySelectorAll('.about-text p, .timeline-desc, .innovation-desc, .goal-desc, .contact-inner p').forEach((el, i) => {
+      el.classList.add('para-reveal');
+      el.style.transitionDelay = (i % 3 * 0.12) + 's';
+    });
+
+    // Cards / box elements
+    document.querySelectorAll('.about-card, .innovation-card, .vital').forEach((el, i) => {
+      el.classList.add('card-reveal');
+      el.style.transitionDelay = (i * 0.1) + 's';
+    });
+
+    // Stat rows
+    document.querySelectorAll('.stat-row').forEach((el, i) => {
+      el.classList.add('right-reveal');
+      el.style.transitionDelay = (i * 0.12) + 's';
+    });
+
+    // Innovation tag & source lines
+    document.querySelectorAll('.innovation-tag, .timeline-org, .timeline-date, .quote-source').forEach(el => {
+      el.classList.add('para-reveal');
+    });
+
+    // Quote mark
+    document.querySelectorAll('.quote-mark').forEach(el => el.classList.add('scale-reveal'));
+
+    // Tags
+    document.querySelectorAll('.tag').forEach((el, i) => {
+      el.classList.add('tag-reveal');
+      el.style.transitionDelay = (i * 0.07) + 's';
+    });
+
+    // Timeline date underline
+    document.querySelectorAll('.timeline-date').forEach(el => el.classList.add('underline-reveal'));
+
+    // Contact links
+    document.querySelectorAll('.contact-link').forEach((el, i) => {
+      el.classList.add('card-reveal');
+      el.style.transitionDelay = (i * 0.12) + 's';
+    });
+
+    /* ══════════════════════════════════════════
+       STAGGER WORD DELAYS per element
+    ══════════════════════════════════════════ */
+    function assignWordDelays(el) {
+      const words = el.querySelectorAll('.word-inner');
+      words.forEach((w, i) => {
+        w.style.transitionDelay = (i * 0.045) + 's';
+      });
+    }
+    document.querySelectorAll('.split-ready').forEach(assignWordDelays);
+
+    /* ══════════════════════════════════════════
+       MASTER INTERSECTION OBSERVER
+    ══════════════════════════════════════════ */
+    const revealClasses = ['split-ready','label-reveal','para-reveal','card-reveal','left-reveal','right-reveal','scale-reveal','underline-reveal','tag-reveal'];
+
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+
+        if (el.classList.contains('split-ready') || revealClasses.some(c => el.classList.contains(c))) {
+          el.classList.add('in-view');
+        }
+        // Legacy classes
+        if (el.classList.contains('timeline-item') || el.classList.contains('goal-card') || el.classList.contains('skill-item')) {
+          el.classList.add('visible');
+        }
+
+        io.unobserve(el);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    // Observe everything
+    document.querySelectorAll(
+      revealClasses.map(c => '.' + c).join(', ') +
+      ', .timeline-item, .goal-card, .skill-item'
+    ).forEach(el => io.observe(el));
+
+    /* ══════════════════════════════════════════
+       GOAL CARDS stagger
+    ══════════════════════════════════════════ */
+    document.querySelectorAll('.goal-card').forEach((card, i) => {
+      card.style.transitionDelay = (i * 0.15) + 's';
+    });
+
+    /* ══════════════════════════════════════════
+       PARALLAX ORBS
+    ══════════════════════════════════════════ */
+    document.addEventListener('mousemove', e => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 20;
+      const y = (e.clientY / window.innerHeight - 0.5) * 20;
+      document.querySelectorAll('.orb').forEach((orb, i) => {
+        const f = (i + 1) * 0.5;
+        orb.style.transform = `translate(${x*f}px, ${y*f}px)`;
+      });
+    });
+
+    /* ══════════════════════════════════════════
+       SCROLL PROGRESS BAR
+    ══════════════════════════════════════════ */
+    const bar = document.createElement('div');
+    bar.style.cssText = 'position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--teal),var(--gold));z-index:9999;transition:width 0.1s linear;pointer-events:none;';
+    document.body.appendChild(bar);
+    window.addEventListener('scroll', () => {
+      const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+      bar.style.width = pct + '%';
+      const nav = document.querySelector('nav');
+      nav.style.background = window.scrollY > 50 ? 'rgba(5,8,15,0.95)' : 'rgba(5,8,15,0.6)';
+    });
+
+    /* ══════════════════════════════════════════
+       COUNTER ANIMATION for any stat numbers
+    ══════════════════════════════════════════ */
+    function animateCount(el, target, duration=1200) {
+      let start = null;
+      function step(ts) {
+        if (!start) start = ts;
+        const p = Math.min((ts - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(ease * target);
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+  </script>
+</body>
+</html>
